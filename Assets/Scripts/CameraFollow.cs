@@ -11,6 +11,13 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 offset; // Jarak antara kamera dan pemain
 
+    // Camera limits
+    [Header("X Axis Limits")]
+    public bool enableLimit = true;
+    public float minX = -10f;
+    public float maxX = 20f;
+
+
     void Start()
     {
         // Hitung jarak awal antara kamera dan pemain saat game dimulai
@@ -29,6 +36,14 @@ public class CameraFollow : MonoBehaviour
 
         // 2. Gerakkan kamera secara halus (Smooth) dari posisi sekarang ke tujuan
         // Lerp = Linear Interpolation (Perpindahan bertahap)
+
+
+        if (enableLimit)
+        {
+            float clampedX = Mathf.Clamp(targetPosition.x, minX, maxX);
+            targetPosition = new Vector3(clampedX, targetPosition.y, targetPosition.z);
+        }
+
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
 
         // 3. Terapkan posisi baru
