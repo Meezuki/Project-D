@@ -3,6 +3,9 @@ using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 
+
+using UnityEngine.SceneManagement; // untuk pindah scene
+
 namespace Map
 {
     public class MapPlayerTracker : MonoBehaviour
@@ -69,18 +72,43 @@ namespace Map
             switch (mapNode.Node.nodeType)
             {
                 case NodeType.MinorEnemy:
+
+                    SceneManager.LoadScene("BattleScene");
+
+
                     break;
                 case NodeType.EliteEnemy:
+
+
+                    SceneManager.LoadScene("BattleScene");
+
                     break;
                 case NodeType.RestSite:
+
+
+                    SceneManager.LoadScene("BattleScene");
+
                     break;
                 case NodeType.Treasure:
+
+
+                    SceneManager.LoadScene("BattleScene");
+
                     break;
                 case NodeType.Store:
+
+                    SceneManager.LoadScene("BattleScene");
+
                     break;
                 case NodeType.Boss:
+
+                    SceneManager.LoadScene("BattleScene");
+
                     break;
                 case NodeType.Mystery:
+
+                    SceneManager.LoadScene("BattleScene");
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
