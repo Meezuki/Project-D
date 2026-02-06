@@ -679,7 +679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8650d06b154f84d4abe34ebe710464e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeSceneCollider
-  sceneToLoad: NextScene
+  sceneToLoad: MapScene
 --- !u!65 &1675567354
 BoxCollider:
   m_ObjectHideFlags: 0
