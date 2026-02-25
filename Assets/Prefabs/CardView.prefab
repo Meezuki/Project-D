@@ -448,7 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardView
   title: {fileID: 7287121578600324516}
   description: {fileID: 3542386339353938518}
-  manaReq: {fileID: 5495282022479523470}
+  Mana: {fileID: 5495282022479523470}
   imageSR: {fileID: 879532693670446186}
   wrapper: {fileID: 353199869077759370}
 --- !u!210 &6859925751358594363
