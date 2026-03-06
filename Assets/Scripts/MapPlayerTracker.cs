@@ -102,6 +102,7 @@ namespace Map
                     break;
                 case NodeType.Boss:
 
+                    PlayerPrefs.SetInt("IsBossBattle", 1);
                     SceneManager.LoadScene("BattleScene");
 
                     break;

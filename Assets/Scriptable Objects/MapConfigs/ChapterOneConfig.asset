@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a21f71146b25f5f4faa3957f18d627ba, type: 3}
-  m_Name: DefaultMapConfig
+  m_Name: ChapterOneConfig
   m_EditorClassIdentifier: 
   nodeBlueprints:
   - {fileID: 11400000, guid: f09a895d243765545b867adcb10cd13e, type: 2}
@@ -24,11 +24,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dfb2651849bbba640970aec1f4b8601f, type: 2}
   randomNodes: 0600000004000000030000000000000002000000
   numOfPreBossNodes:
-    min: 4
-    max: 5
+    min: 1
+    max: 1
   numOfStartingNodes:
-    min: 3
-    max: 4
+    min: 1
+    max: 2
   extraPaths: 0
   layers:
   - nodeType: 0
@@ -37,20 +37,6 @@ MonoBehaviour:
       max: 0
     nodesApartDistance: 2
     randomizePosition: 0
-    randomizeNodes: 0
-  - nodeType: 0
-    distanceFromPreviousLayer:
-      min: 2
-      max: 3
-    nodesApartDistance: 2
-    randomizePosition: 0.587
-    randomizeNodes: 0.728
-  - nodeType: 0
-    distanceFromPreviousLayer:
-      min: 2
-      max: 3
-    nodesApartDistance: 2
-    randomizePosition: 0.509
     randomizeNodes: 0
   - nodeType: 3
     distanceFromPreviousLayer:
@@ -65,27 +51,6 @@ MonoBehaviour:
       max: 3
     nodesApartDistance: 2
     randomizePosition: 0.176
-    randomizeNodes: 0.739
-  - nodeType: 0
-    distanceFromPreviousLayer:
-      min: 2
-      max: 3
-    nodesApartDistance: 2
-    randomizePosition: 0.649
-    randomizeNodes: 0.739
-  - nodeType: 0
-    distanceFromPreviousLayer:
-      min: 2
-      max: 3
-    nodesApartDistance: 2
-    randomizePosition: 0.176
-    randomizeNodes: 0.739
-  - nodeType: 0
-    distanceFromPreviousLayer:
-      min: 2
-      max: 3
-    nodesApartDistance: 2
-    randomizePosition: 0.829
     randomizeNodes: 0.739
   - nodeType: 0
     distanceFromPreviousLayer:
