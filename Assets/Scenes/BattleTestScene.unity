@@ -387,9 +387,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 331521609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dcb03e95b2dd7645bb1aa790cc4dad6, type: 3}
+  m_Script: {fileID: 11500000, guid: 78a7cfe29d14e2c4eb18a979c008105a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyTurnGA
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySystem
 --- !u!1 &522477454
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +798,7 @@ GameObject:
   - component: {fileID: 735981006}
   - component: {fileID: 735981005}
   - component: {fileID: 735981004}
-  - component: {fileID: 735981003}
+  - component: {fileID: 735981007}
   m_Layer: 5
   m_Name: EndTurnButtonUI
   m_TagString: Untagged
@@ -826,18 +826,6 @@ RectTransform:
   m_AnchoredPosition: {x: -30, y: -30}
   m_SizeDelta: {x: 360, y: 120}
   m_Pivot: {x: 1, y: 1}
---- !u!114 &735981003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735981001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4afeba7ed3628c47adeae405a137f15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EndTurnButtonUI
 --- !u!114 &735981004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,7 +870,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 735981003}
+      - m_Target: {fileID: 735981007}
         m_TargetAssemblyTypeName: EndTurnButtonUI, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -932,6 +920,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735981001}
   m_CullTransparentMesh: 1
+--- !u!114 &735981007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735981001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4afeba7ed3628c47adeae405a137f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndTurnButtonUI
 --- !u!1 &745131565
 GameObject:
   m_ObjectHideFlags: 0
