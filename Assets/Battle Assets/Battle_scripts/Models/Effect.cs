@@ -1,16 +1,5 @@
-using UnityEngine;
-
-public class Effects : MonoBehaviour
+[System.Serializable] //required to be editable in editor
+public abstract class Effect
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract GameAction GetGameAction();
 }
