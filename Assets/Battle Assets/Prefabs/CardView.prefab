@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 1328794242328229617}
   - component: {fileID: 6859925751358594363}
   - component: {fileID: 1132153120474886458}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CardView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,6 +451,9 @@ MonoBehaviour:
   Mana: {fileID: 5495282022479523470}
   imageSR: {fileID: 879532693670446186}
   wrapper: {fileID: 353199869077759370}
+  dropLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!210 &6859925751358594363
 SortingGroup:
   m_ObjectHideFlags: 0
