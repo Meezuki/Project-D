@@ -8,7 +8,8 @@ public static class ListExtensions
         if (list.Count == 0) return default;
         int r = Random.Range(0, list.Count);
         T t = list[r];
-        list.Remove(t);   
+        // list.Remove(t);  
+        list.RemoveAt(r);  
         return t;
     }
 }
