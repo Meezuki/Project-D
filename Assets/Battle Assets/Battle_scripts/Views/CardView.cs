@@ -44,8 +44,7 @@ public class CardView : MonoBehaviour
         dragStartPosition = transform.position;
         dragStartRotation = transform.rotation;
         transform.rotation = quaternion.Euler(0, 0, 0);
-        // transform.position = MouseUtil.GetMousePositionInWorldSpace(-1);
-        transform.position = MouseUtil.GetMousePositionInWorldSpace();
+        transform.position = MouseUtil.GetMousePositionInWorldSpace(-1);
     }
 
         void OnMouseDrag()
@@ -59,7 +58,8 @@ public class CardView : MonoBehaviour
         if(!Interactions.Instance.PlayerCanInteract()) return;
         if(Physics.Raycast(transform.position, Vector3.forward, out RaycastHit hit, 10f))
         {
-            // play card
+            PlayCardGA playCardGA = new(Card);
+            ActionSystem.Instance.Perform(playCardGA);
         }
         else
         {
