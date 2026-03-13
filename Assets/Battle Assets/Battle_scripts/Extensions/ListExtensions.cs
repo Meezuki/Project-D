@@ -9,7 +9,7 @@ public static class ListExtensions
         int r = Random.Range(0, list.Count);
         T t = list[r];
         // list.Remove(t);  
-        list.RemoveAt(r);  
+        list.RemoveAt(r);
         return t;
     }
 }
