@@ -6,22 +6,40 @@ namespace Map
 {
     public class BattleManager : MonoBehaviour
     {
-        
+
+        [Header("Pengaturan Hadiah Gold")]
+        public int minGoldReward = 10;
+        public int maxGoldReward = 25;
+
         public void GameOver()
         {
             // 1. Hapus memori peta yang lama
             PlayerPrefs.DeleteKey("Map");
-            PlayerPrefs.Save(); 
+            PlayerPrefs.Save();
 
             // 2. Load scene peta
             // Saat MapScene terbuka, MapManager di sana akan mendeteksi
             // tidak ada save data, lalu otomatis memanggil GenerateNewMap()
+            CurrencyManager.Instance.ResetGold();
             SceneManager.LoadScene("MapScene");
         }
 
 
         public void WinBattle()
         {
+
+            int randomGold = Random.Range(minGoldReward, maxGoldReward + 1);
+            if (CurrencyManager.Instance != null)
+            {
+                CurrencyManager.Instance.AddGold(randomGold);
+                Debug.Log($"Musuh dikalahkan! Mendapatkan hadiah {randomGold} Gold.");
+            }
+            else
+            {
+                Debug.LogWarning("Gagal memberikan Gold: CurrencyManager tidak ditemukan di Scene!");
+            }
+
+
             // Kita baca catatan yang dibuat sebelum masuk scene ini
             int isBoss = PlayerPrefs.GetInt("IsBossBattle", 0);
 

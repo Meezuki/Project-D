@@ -947,6 +947,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c97ea7c7dd65f9439cc1e14c06e9868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleManager
+  minGoldReward: 10
+  maxGoldReward: 25
 --- !u!4 &923396912
 Transform:
   m_ObjectHideFlags: 0
@@ -1387,6 +1389,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6804982030652343784, guid: 6709ccf419b9e0b44927cf72eaf38ea1, type: 3}
   m_PrefabInstance: {fileID: 1539131507421836279}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1942892975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1942892977}
+  - component: {fileID: 1942892976}
+  m_Layer: 0
+  m_Name: CurrencyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1942892976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942892975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d7881966d88b04fb21fb2c1207c930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CurrencyManager
+  startingGold: 99
+--- !u!4 &1942892977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942892975}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1603.5936, y: 1015.5445, z: -12.45474}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1539131507421836279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1527,3 +1574,4 @@ SceneRoots:
   - {fileID: 235754721}
   - {fileID: 1404823425}
   - {fileID: 923396912}
+  - {fileID: 1942892977}

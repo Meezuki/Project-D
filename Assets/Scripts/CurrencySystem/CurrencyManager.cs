@@ -65,6 +65,7 @@ public class CurrencyManager : MonoBehaviour
     {
         currentGold += amount;
         SaveGold();
+        Debug.Log("added" + amount + " Total Gold" +  currentGold);
         // kasih tau UI goldnya berubah ke value baru
         OnGoldChanged?.Invoke(currentGold);
 
