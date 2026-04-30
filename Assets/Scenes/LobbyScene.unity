@@ -243,7 +243,8 @@ GameObject:
   - component: {fileID: 285268883}
   - component: {fileID: 285268882}
   - component: {fileID: 285268881}
-  m_Layer: 0
+  - component: {fileID: 285268885}
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,13 +337,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285268879}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.313491, w: 0.94959116}
   m_LocalPosition: {x: -10.03, y: 2.79, z: -0.71}
   m_LocalScale: {x: 6.4624, y: 6.4624, z: 6.4624}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 36.539}
+--- !u!114 &285268885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285268879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce557d74246d3684695e7a3973a45bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Chest
+  _prompt: Open Chest
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +533,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1449069427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1449069428}
+  m_Layer: 0
+  m_Name: InteractionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1449069428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449069427}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1815516447}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1469263322
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,15 +701,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2127658383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6c5042813370b84a98e92590a55724f, type: 3}
+  m_Script: {fileID: 11500000, guid: 46794cc0e6e0fc34a91490be28160239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactor
-  _interactionPoint: {fileID: 0}
-  _interactionPointRadius: 0.5
+  _interactionPoint: {fileID: 1449069428}
+  _interactionPointRadius: 2
   _interactionMask:
     serializedVersion: 2
-    m_Bits: 0
-  _numFound: 0
+    m_Bits: 128
+  _numFound: 1
 --- !u!1001 &1539131507421836279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -681,6 +726,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0942b3ccd7c7fa04f8a5ad0c47034ea6, type: 2}
+    - target: {fileID: 4497887941844531580, guid: 6709ccf419b9e0b44927cf72eaf38ea1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.27
+      objectReference: {fileID: 0}
     - target: {fileID: 5158084670607238130, guid: 6709ccf419b9e0b44927cf72eaf38ea1, type: 3}
       propertyPath: animator
       value: 
@@ -727,7 +776,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6804982030652343784, guid: 6709ccf419b9e0b44927cf72eaf38ea1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1449069428}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1523761106372677146, guid: 6709ccf419b9e0b44927cf72eaf38ea1, type: 3}
       insertIndex: -1
