@@ -1,21 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChangeSceneCollider : MonoBehaviour
+public class ChangeSceneCollider : MonoBehaviour, Interactable
 {
     [Header("Settings")]
     public string sceneToLoad;
 
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] private string _prompt = "Enter Door";
+    public string InteractablePrompt => _prompt;
 
+    public bool Interact(Interactor interactor)
     {
-        Debug.Log("Collider Hit");
-        // Check if the object entering is the Player
-        // (Make sure your Player has the tag "Player")
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Switching Scene...");
-            SceneManager.LoadScene(sceneToLoad);
-        }
+        Debug.Log("Switching Scene...");
+        SceneManager.LoadScene(sceneToLoad);
+        return true;
     }
 }
