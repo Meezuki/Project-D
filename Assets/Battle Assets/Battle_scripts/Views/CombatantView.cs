@@ -13,6 +13,7 @@ public class CombatantView : MonoBehaviour
     protected void SetupBase(int health, Sprite image)
     {
         MaxHealth = health;
+        CurrentHealth = health; // fix
         spriteRenderer.sprite = image;
         UpdateHealthText();
     }
