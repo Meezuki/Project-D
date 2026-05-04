@@ -16,6 +16,10 @@ public class CardView : MonoBehaviour
     private  Quaternion dragStartRotation;
     public void Setup(Card card)
     {
+        if (card == null)
+        {
+            Debug.LogError("Data 'card' bernilai NULL! Cek logika DrawCard di CardSystem.cs");
+        }
         Card = card;
         title.text = card.Title;
         description.text = card.Description;
@@ -33,6 +37,7 @@ public class CardView : MonoBehaviour
     }
     void OnMouseExit()
     {
+        if (!Interactions.Instance.PlayerCanHover()) return;
         CardViewHoverSystem.Instance.Hide();
         wrapper.SetActive(true);
     }
@@ -48,16 +53,18 @@ public class CardView : MonoBehaviour
         transform.position = MouseUtil.GetMousePositionInWorldSpace(-1);
     }
 
-        void OnMouseDrag()
+    void OnMouseDrag()
     {
         if(!Interactions.Instance.PlayerCanInteract()) return;  
         transform.position = MouseUtil.GetMousePositionInWorldSpace(-1);
     }
 
-        void OnMouseUp()
+    void OnMouseUp()
     {
+        // Check if enough mana and card is hovering on top of the dropLayer
         if(!Interactions.Instance.PlayerCanInteract()) return;
-        if(Physics.Raycast(transform.position, Vector3.forward, out RaycastHit hit, 10f, dropLayer))
+        if(ManaSystem.Instance.HasEnoughMana(Card.Mana)
+            && Physics.Raycast(transform.position, Vector3.forward, out RaycastHit hit, 10f, dropLayer))
         {
             PlayCardGA playCardGA = new(Card);
             ActionSystem.Instance.Perform(playCardGA);
