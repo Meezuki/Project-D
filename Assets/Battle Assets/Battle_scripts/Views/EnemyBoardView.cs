@@ -1,16 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBoardView : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private List<Transform> slots;
+    public List<EnemyView> EnemyViews { get; private set; } = new();
 
-    // Update is called once per frame
-    void Update()
+    public void AddEnemy(EnemyData enemyData)
     {
-        
+        Transform slot = slots[EnemyViews.Count];
+        EnemyView enemyView = EnemyViewCreator.Instance.CreateEnemyView(enemyData, slot.position, slot.rotation);
+        enemyView.transform.parent = slot;
+        EnemyViews.Add(enemyView);
+
     }
 }
