@@ -74,8 +74,14 @@ public class CardSystem : Singleton<CardSystem>
     private IEnumerator PlayCardPerformer(PlayCardGA playCardGA)
     {
         hand.Remove(playCardGA.Card);
+
+        // FIX 5-6-2026, added line to add card to discard pile, futures ideas can be implemented for one time use cards
+        discardPile.Add(playCardGA.Card);
+
+
         CardView cardView = handView.RemoveCard(playCardGA.Card);
         yield return DiscardCard(cardView);
+
 
 
         // spend mana

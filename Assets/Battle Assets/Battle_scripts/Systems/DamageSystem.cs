@@ -17,11 +17,25 @@ public class DamageSystem : MonoBehaviour
     }
     private IEnumerator DealDamagePerformer(DealDamageGA dealDamageGA)
     {
-        foreach (var targets in dealDamageGA.Targets)
+        foreach (var target in dealDamageGA.Targets)
         {
-            targets.Damage(dealDamageGA.Amount);
-            Instantiate(damageVFX, targets.transform.position, Quaternion.identity);
+            target.Damage(dealDamageGA.Amount);
+            Instantiate(damageVFX, target.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(0.15f);
+
+            if (target.CurrentHealth <= 0)
+            {
+                if (target is EnemyView enemyView)
+                {
+                    KillEnemyGA killEnemyGA = new(enemyView);
+                    ActionSystem.Instance.AddReaction(killEnemyGA);
+                }
+                else
+                {
+                    // Do some game over logic here
+                    // open game over screen
+                }
+            }
         }
     }
 }
