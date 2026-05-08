@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Perk
 {
-    private Sprite Image => data.Image;
+    public Sprite Image => data.Image;
     private readonly PerkData data;
     private readonly PerkCondition condition;
     public readonly AutoTargetEffect effect;
