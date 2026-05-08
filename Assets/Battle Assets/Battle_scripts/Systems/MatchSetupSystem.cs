@@ -31,8 +31,16 @@ public class MatchSetupSystem : MonoBehaviour
 
             PerkSystem.Instance.AddPerk(new Perk(perkData));
 
-            DrawCardsGA drawCardsGA = new(5);
-            ActionSystem.Instance.Perform(drawCardsGA);
+
+            RefillManaGA refillManaGA = new();
+            ActionSystem.Instance.Perform(refillManaGA, () =>
+            {
+                DrawCardsGA drawCardsGA = new(5);
+                ActionSystem.Instance.Perform(drawCardsGA);
+            });
+
+            //DrawCardsGA drawCardsGA = new(5);
+            //ActionSystem.Instance.Perform(drawCardsGA);
 
 
 
