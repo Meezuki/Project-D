@@ -92,7 +92,7 @@ namespace Map
                 case NodeType.Treasure:
 
 
-                    SceneManager.LoadScene("BattleScene");
+                    SceneManager.LoadScene("RewardDomain");
 
                     break;
                 case NodeType.Store:
