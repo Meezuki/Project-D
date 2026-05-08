@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0219101dd71211547b3531d814f44f3a, type: 3}
-  m_Name: Armor Up
+  m_Name: Firestorm
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Description>k__BackingField: Add 5 armor.
-  <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: 17f81cd42718fd64a8cad8b04cf5b047, type: 3}
+  <Description>k__BackingField: Add 3 burn to all enemies.
+  <Mana>k__BackingField: 2
+  <Image>k__BackingField: {fileID: 21300000, guid: 0f7dabb2b772ccd4caea6331b223ee6a, type: 3}
   <ManualTargetEffect>k__BackingField:
     rid: -2
   <OtherEffects>k__BackingField:
   - <TargetMode>k__BackingField:
-      rid: 82034745796984914
+      rid: 82034745796984918
     <Effect>k__BackingField:
-      rid: 82034745796984917
+      rid: 82034745796984919
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 82034745796984914
-      type: {class: HeroTM, ns: , asm: Assembly-CSharp}
+    - rid: 82034745796984918
+      type: {class: AllEnemiesTM, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 82034745796984917
+    - rid: 82034745796984919
       type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
       data:
-        statusEffectType: 0
-        stackCount: 5
+        statusEffectType: 1
+        stackCount: 3
