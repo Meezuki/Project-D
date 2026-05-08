@@ -89,8 +89,12 @@ public class CardSystem : Singleton<CardSystem>
         SpendManaGA spendManaGA = new(playCardGA.Card.Mana);
         ActionSystem.Instance.AddReaction(spendManaGA);
 
+        if(playCardGA.Card.ManualTargetEffect != null)
+        {
+            PerformEffectGA performEffectGA = new(playCardGA.Card.ManualTargetEffect, new() { playCardGA.ManualTarget });
+            ActionSystem.Instance.AddReaction(performEffectGA);
 
-
+        }
 
         //perform effects here
         foreach (var effectWrapper in playCardGA.Card.OtherEffects)
