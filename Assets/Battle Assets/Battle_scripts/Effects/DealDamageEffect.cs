@@ -10,6 +10,5 @@ public class DealDamageEffect : Effect
         DealDamageGA dealDamageGA = new(damageAmount, targets, caster);
         return dealDamageGA;    
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
+    
 }

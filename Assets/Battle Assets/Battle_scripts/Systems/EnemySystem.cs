@@ -70,6 +70,17 @@ public class EnemySystem : Singleton<EnemySystem>
     private IEnumerator KillEnemyPerformer(KillEnemyGA killEnemyGA)
     {
         yield return enemyBoardView.RemoveEnemy(killEnemyGA.EnemyView);
-    }
 
+
+        // Check if there are no more enemies
+
+        if (Enemies.Count == 0)
+        {
+            Debug.Log("NO MORE ENEMIES! YOU WIN!");
+
+            // 3. Trigger a Win Match Action (Recommended)
+            // WinMatchGA winMatchGA = new();
+            // ActionSystem.Instance.AddReaction(winMatchGA);
+        }
+    }
 }
