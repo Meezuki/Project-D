@@ -76,11 +76,9 @@ public class EnemySystem : Singleton<EnemySystem>
 
         if (Enemies.Count == 0)
         {
-            Debug.Log("NO MORE ENEMIES! YOU WIN!");
-
-            // 3. Trigger a Win Match Action (Recommended)
-            // WinMatchGA winMatchGA = new();
-            // ActionSystem.Instance.AddReaction(winMatchGA);
+            // Add the Win reaction to the queue
+            WinMatchGA winMatchGA = new();
+            ActionSystem.Instance.AddReaction(winMatchGA);
         }
     }
 }
