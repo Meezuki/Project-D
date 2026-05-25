@@ -73,14 +73,18 @@ namespace Map
             {
                 case NodeType.MinorEnemy:
 
-                    SceneManager.LoadScene("BattleScene");
+                    //SceneManager.LoadScene("BattleScene");
+
+                    SceneManager.LoadScene("BattleTestScene");
 
 
                     break;
                 case NodeType.EliteEnemy:
 
 
-                    SceneManager.LoadScene("BattleScene");
+                    //SceneManager.LoadScene("BattleScene");
+
+                    SceneManager.LoadScene("BattleTestScene");
 
                     break;
                 case NodeType.RestSite:
@@ -97,18 +101,18 @@ namespace Map
                     break;
                 case NodeType.Store:
 
-                    SceneManager.LoadScene("BattleScene");
+                    SceneManager.LoadScene("BattleTestScene");
 
                     break;
                 case NodeType.Boss:
 
                     PlayerPrefs.SetInt("IsBossBattle", 1);
-                    SceneManager.LoadScene("BattleScene");
+                    SceneManager.LoadScene("BattleTestScene");
 
                     break;
                 case NodeType.Mystery:
 
-                    SceneManager.LoadScene("BattleScene");
+                    SceneManager.LoadScene("RewardDomain");
 
                     break;
                 default:

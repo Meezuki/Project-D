@@ -55,7 +55,12 @@ public class EnemySystem : Singleton<EnemySystem>
 
     private IEnumerator AttackHeroPerformer(AttackHeroGA attackHeroGA)
     {
+
         EnemyView attacker = attackHeroGA.Attacker;
+
+        // Make sure the attacker is still alive before moving
+        if (attacker == null) yield break;
+
 
         // Play animation: for now just move forward and back
         Tween tween = attacker.transform.DOMoveX(attacker.transform.position.x - 1f, 0.15f);
