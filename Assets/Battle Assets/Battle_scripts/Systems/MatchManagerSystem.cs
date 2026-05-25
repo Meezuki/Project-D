@@ -27,7 +27,7 @@ public class MatchManagerSystem : MonoBehaviour
             // 2. Tampilkan ke UI
             if (goldRewardText != null)
             {
-                goldRewardText.text = "+" + temporaryGoldWon + " Gold";
+                goldRewardText.text = "You won " + temporaryGoldWon + " Gold!";
             }
 
             victoryPanel.SetActive(true);
