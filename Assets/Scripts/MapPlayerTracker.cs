@@ -90,7 +90,7 @@ namespace Map
                 case NodeType.RestSite:
 
 
-                    SceneManager.LoadScene("BattleScene");
+                    SceneManager.LoadScene("BattleTestScene");
 
                     break;
                 case NodeType.Treasure:
