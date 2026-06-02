@@ -7,6 +7,8 @@ public class MatchSetupSystem : MonoBehaviour
     [SerializeField] private HeroData heroData;
     [SerializeField] private List<EnemyData> enemyDatas;
 
+    [SerializeField] private PerkData perkData;
+
         private void Start()
         {
         //CardSystem.Instance.Setup(deckData);
@@ -25,9 +27,37 @@ public class MatchSetupSystem : MonoBehaviour
         // sekarang ambil deck dari herodata bukan secara manual dari deckData
             HeroSystem.Instance.Setup(heroData);
             EnemySystem.Instance.Setup(enemyDatas);
-            CardSystem.Instance.Setup(heroData.Deck);
-            DrawCardsGA drawCardsGA = new(5);
-            ActionSystem.Instance.Perform(drawCardsGA);
+            PerkSystem.Instance.AddPerk(new Perk(perkData));
+
+
+            // OLD: sekarang kita gunakan deck data dari run manager
+            // CardSystem.Instance.Setup(heroData.Deck); 
+
+
+            // --- NEW GLOBAL DECK LOGIC ---
+            // Cek apakah RunManager ada dan deck-nya tidak kosong (artinya kita datang dari MapScene)
+            if (RunManager.Instance != null && RunManager.Instance.CurrentDeck.Count > 0)
+            {
+                Debug.Log("Menggunakan Deck dari RunManager!");
+                CardSystem.Instance.Setup(RunManager.Instance.CurrentDeck);
+            }
+            else
+            {
+                // FALLBACK: Jika kita langsung tekan Play di BattleTestScene, gunakan deck default dari HeroData
+                Debug.LogWarning("RunManager tidak ditemukan! Menggunakan default deck dari HeroData untuk testing.");
+                CardSystem.Instance.Setup(heroData.Deck);
+            }
+
+
+        RefillManaGA refillManaGA = new();
+            ActionSystem.Instance.Perform(refillManaGA, () =>
+            {
+                DrawCardsGA drawCardsGA = new(5);
+                ActionSystem.Instance.Perform(drawCardsGA);
+            });
+
+            //DrawCardsGA drawCardsGA = new(5);
+            //ActionSystem.Instance.Perform(drawCardsGA);
 
 
 

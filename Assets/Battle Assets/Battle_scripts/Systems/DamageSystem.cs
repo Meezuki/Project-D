@@ -19,6 +19,8 @@ public class DamageSystem : MonoBehaviour
     {
         foreach (var target in dealDamageGA.Targets)
         {
+
+            if (target == null) continue;
             target.Damage(dealDamageGA.Amount);
             Instantiate(damageVFX, target.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(0.15f);

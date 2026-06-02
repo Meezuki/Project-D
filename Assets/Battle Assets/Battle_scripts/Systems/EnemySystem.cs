@@ -40,6 +40,12 @@ public class EnemySystem : Singleton<EnemySystem>
 
         foreach (var enemy in enemyBoardView.EnemyViews)
         {
+            int burnStacks = enemy.GetStatusEffectStacks(StatusEffectType.BURN);
+            if(burnStacks > 0)
+            {
+                ApplyBurnGA applyBurnGA = new(burnStacks, enemy);
+                ActionSystem.Instance.AddReaction(applyBurnGA);
+            }
             AttackHeroGA attackHeroGA = new(enemy);
             ActionSystem.Instance.AddReaction(attackHeroGA);
 
@@ -49,7 +55,12 @@ public class EnemySystem : Singleton<EnemySystem>
 
     private IEnumerator AttackHeroPerformer(AttackHeroGA attackHeroGA)
     {
+
         EnemyView attacker = attackHeroGA.Attacker;
+
+        // Make sure the attacker is still alive before moving
+        if (attacker == null) yield break;
+
 
         // Play animation: for now just move forward and back
         Tween tween = attacker.transform.DOMoveX(attacker.transform.position.x - 1f, 0.15f);
@@ -57,13 +68,22 @@ public class EnemySystem : Singleton<EnemySystem>
         attacker.transform.DOMoveX(attacker.transform.position.x + 1f, 0.25f);
 
         // Deal Damage
-        DealDamageGA dealDamageGA = new(attacker.AttackPower, new() { HeroSystem.Instance.HeroView });
+        DealDamageGA dealDamageGA = new(attacker.AttackPower, new() { HeroSystem.Instance.HeroView }, attackHeroGA.Caster);
         ActionSystem.Instance.AddReaction(dealDamageGA);
     }
 
     private IEnumerator KillEnemyPerformer(KillEnemyGA killEnemyGA)
     {
         yield return enemyBoardView.RemoveEnemy(killEnemyGA.EnemyView);
-    }
 
+
+        // Check if there are no more enemies
+
+        if (Enemies.Count == 0)
+        {
+            // Add the Win reaction to the queue
+            WinMatchGA winMatchGA = new();
+            ActionSystem.Instance.AddReaction(winMatchGA);
+        }
+    }
 }
