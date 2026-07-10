@@ -106,9 +106,7 @@ namespace Map
 
                     break;
                 case NodeType.Store:
-
-                    SceneManager.LoadScene("BattleTestScene");
-
+                    SceneManager.LoadScene("ShopScene");
                     break;
                 case NodeType.Boss:
 

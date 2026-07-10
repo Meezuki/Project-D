@@ -29,17 +29,12 @@ public class CombatantView : MonoBehaviour
         }
     }
 
-    protected void SetupBase(int health, Sprite image)
+    protected void SetupBase(int health, Sprite image, int currentHealth = -1)
     {
         MaxHealth = health;
-        CurrentHealth = health; // fix
+        CurrentHealth = currentHealth == -1 ? MaxHealth : currentHealth;
         spriteRenderer.sprite = image;
         UpdateHealthText();
-    }
-
-    private void UpdateHealthText()
-    {
-        healthText.text = "HP: " + CurrentHealth;
     }
 
     public void Damage(int damageAmount)
@@ -52,7 +47,8 @@ public class CombatantView : MonoBehaviour
             {
                 RemoveStatusEffect(StatusEffectType.ARMOR, remainingDamage);
                 remainingDamage = 0;
-            } else if(currentArmor < damageAmount)
+            }
+            else
             {
                 RemoveStatusEffect(StatusEffectType.ARMOR, currentArmor);
                 remainingDamage -= currentArmor;
@@ -67,10 +63,31 @@ public class CombatantView : MonoBehaviour
                 CurrentHealth = 0;
             }
         }
-
         
         transform.DOShakePosition(0.2f, 0.5f);
-        UpdateHealthText() ;
+        UpdateHealthText();
+        SaveHPIfHero();
+    }
+
+    public void Heal(int amount)
+    {
+        CurrentHealth = Mathf.Min(MaxHealth, CurrentHealth + amount);
+        UpdateHealthText();
+        SaveHPIfHero();
+    }
+
+    private void UpdateHealthText()
+    {
+        healthText.text = "HP: " + CurrentHealth + "/" + MaxHealth;
+    }
+
+    private void SaveHPIfHero()
+    {
+        if (this is HeroView && RunManager.Instance != null)
+        {
+            RunManager.Instance.HeroCurrentHP = CurrentHealth;
+            RunManager.Instance.HeroMaxHP = MaxHealth;
+        }
     }
 
     public void AddStatusEffect(StatusEffectType type, int stackCount)

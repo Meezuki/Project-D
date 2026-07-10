@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   <Description>k__BackingField: Gives 2 strength
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: df22856cc2fcab349b7c6bd1f6b39fee, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 85e3f4c2666948548ad87d1c6c765943, type: 3}
   <ManualTargetEffect>k__BackingField:
     rid: -2
   <OtherEffects>k__BackingField:

@@ -5,6 +5,7 @@ public class MatchSetupSystem : MonoBehaviour
 {
     //[SerializeField] private List<CardData> deckData;
     [SerializeField] private HeroData heroData;
+    public HeroData HeroData => heroData;
     [SerializeField] private List<EnemyData> enemyDatas;
 
     [SerializeField] private PerkData perkData;
@@ -38,7 +39,18 @@ public class MatchSetupSystem : MonoBehaviour
                 EnemySystem.Instance.Setup(enemyDatas);
             }
 
-            PerkSystem.Instance.AddPerk(new Perk(perkData));
+            // Setup perks from RunManager if available, otherwise use inspector fallback
+            if (RunManager.Instance != null && RunManager.Instance.ActivePerks.Count > 0)
+            {
+                foreach (var perkSO in RunManager.Instance.ActivePerks)
+                {
+                    PerkSystem.Instance.AddPerk(new Perk(perkSO));
+                }
+            }
+            else if (perkData != null)
+            {
+                PerkSystem.Instance.AddPerk(new Perk(perkData));
+            }
 
 
             // OLD: sekarang kita gunakan deck data dari run manager

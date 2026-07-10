@@ -7,6 +7,9 @@ public class RunManager : PersistentSingleton<RunManager>
     [Header("Current Run Data")]
     // Deck yang akan dibawa pemain dan bisa bertambah/berkurang selama run
     public List<CardData> CurrentDeck = new();
+    public int HeroCurrentHP;
+    public int HeroMaxHP;
+    public List<PerkData> ActivePerks = new();
 
     [Header("Encounter Config")]
     [SerializeField] private EncounterPoolSO encounterPool;
@@ -32,7 +35,10 @@ public class RunManager : PersistentSingleton<RunManager>
         CurrentDeck.Clear();
         // Meng-copy daftar kartu dari HeroData ke CurrentDeck agar data asli aman
         CurrentDeck.AddRange(startingHero.Deck);
-        Debug.Log("Run baru dimulai! Deck di-reset sesuai Hero default.");
+        HeroMaxHP = startingHero.Health;
+        HeroCurrentHP = HeroMaxHP;
+        ActivePerks.Clear();
+        Debug.Log("Run baru dimulai! Deck & HP & Perks di-reset sesuai Hero default.");
     }
 
     // Fungsi untuk memanggil saat pemain mendapat kartu dari hadiah/shop

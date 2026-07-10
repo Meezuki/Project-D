@@ -7,6 +7,11 @@ public class PerkSystem : Singleton<PerkSystem>
     [SerializeField] private PerksUI perksUI;
     private readonly List<Perk> perks = new();
 
+    public bool HasPerk(string perkName)
+    {
+        return perks.Exists(p => p.Data != null && p.Data.name == perkName);
+    }
+
     public void AddPerk(Perk perk)
     {
         perks.Add(perk);

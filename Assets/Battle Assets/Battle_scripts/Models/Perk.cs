@@ -4,6 +4,7 @@ using UnityEngine;
 public class Perk
 {
     public Sprite Image => data.Image;
+    public PerkData Data => data;
     private readonly PerkData data;
     private readonly PerkCondition condition;
     public readonly AutoTargetEffect effect;
@@ -17,12 +18,18 @@ public class Perk
 
     public void OnAdd()
     {
-        condition.SubscribeCondition(Reaction);
+        if (condition != null)
+        {
+            condition.SubscribeCondition(Reaction);
+        }
     }
 
     public void OnRemove()
     {
-        condition.UnsubscribeCondition(Reaction);
+        if (condition != null)
+        {
+            condition.UnsubscribeCondition(Reaction);
+        }
     }
 
     private void Reaction(GameAction gameAction)
