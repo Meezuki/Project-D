@@ -5,8 +5,20 @@ public class ManaSystem : Singleton<ManaSystem>
 {
     [SerializeField] private ManaUI manaUI;
 
-    private const int MAX_MANA = 3;
-    private int currentMana = MAX_MANA;
+    public int MaxMana
+    {
+        get
+        {
+            int baseMax = 3;
+            if (PerkSystem.Instance != null && PerkSystem.Instance.HasPerk("Blessed"))
+            {
+                baseMax += 1;
+            }
+            return baseMax;
+        }
+    }
+
+    private int currentMana = 3;
 
     void OnEnable()
     {
@@ -40,7 +52,7 @@ public class ManaSystem : Singleton<ManaSystem>
 
     private IEnumerator RefillManaPerformer(RefillManaGA refillManaGA)
     {
-        currentMana = MAX_MANA;
+        currentMana = MaxMana;
         manaUI.UpdateManaText(currentMana);
         yield return null;
     }
