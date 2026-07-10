@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
@@ -66,6 +66,12 @@ namespace Map
         {
             // we have access to blueprint name here as well
             Debug.Log("Entering node: " + mapNode.Node.blueprintName + " of type: " + mapNode.Node.nodeType);
+            
+            if (RunManager.Instance != null)
+            {
+                RunManager.Instance.PrepareEncounter(mapNode.Node.nodeType);
+            }
+
             // load appropriate scene with context based on nodeType:
             // or show appropriate GUI over the map: 
             // if you choose to show GUI in some of these cases, do not forget to set "Locked" in MapPlayerTracker back to false

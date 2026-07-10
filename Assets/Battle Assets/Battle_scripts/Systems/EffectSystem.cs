@@ -16,6 +16,10 @@ public class EffectSystem : MonoBehaviour
     private IEnumerator PerformEffectPerformer(PerformEffectGA performEffectGA)
     {
         GameAction effectAction = performEffectGA.Effect.GetGameAction(performEffectGA.Targets, HeroSystem.Instance.HeroView);
+        if (effectAction is DealDamageGA dealDamageGA)
+        {
+            dealDamageGA.IsCardAction = true;
+        }
         ActionSystem.Instance.AddReaction(effectAction);
         yield return null;
     }

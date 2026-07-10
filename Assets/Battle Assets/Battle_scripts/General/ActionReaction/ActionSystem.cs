@@ -5,11 +5,20 @@ using UnityEngine;
 
 public class ActionSystem : Singleton<ActionSystem>
 {
-    private List<GameAction> reactions = null;
+    private Stack<List<GameAction>> reactionStack = new();
     public bool IsPerforming { get; private set; } = false;
     private static Dictionary<Type, List<Action<GameAction>>> preSubs = new();
     private static Dictionary<Type, List<Action<GameAction>>> postSubs = new();
     private static Dictionary<Type, Func<GameAction, IEnumerator>> performers = new();
+    private static Dictionary<Delegate, Action<GameAction>> wrappers = new();
+
+    private void OnDestroy()
+    {
+        preSubs.Clear();
+        postSubs.Clear();
+        performers.Clear();
+        wrappers.Clear();
+    }
     public void Perform(GameAction action, System.Action OnPerformFinished = null)
     {
     if (IsPerforming) return;
@@ -23,21 +32,31 @@ public class ActionSystem : Singleton<ActionSystem>
     }
     public void AddReaction(GameAction gameAction)
     {
-        reactions?.Add(gameAction);
+        if (reactionStack.Count > 0)
+        {
+            reactionStack.Peek().Add(gameAction);
+        }
+        else
+        {
+            Debug.LogWarning("No active reaction phase to add reaction to!");
+        }
     }
     private IEnumerator Flow(GameAction action, Action OnFlowFinished = null)
     {
-    reactions = action.PreReactions;
+    reactionStack.Push(action.PreReactions);
     PerformSubscribers(action, preSubs);
-    yield return PerformReactions();
+    yield return PerformReactions(action.PreReactions);
+    reactionStack.Pop();
 
-    reactions = action.PerformReactions;
+    reactionStack.Push(action.PerformReactions);
     yield return PerformPerformer(action);
-    yield return PerformReactions();
+    yield return PerformReactions(action.PerformReactions);
+    reactionStack.Pop();
 
-    reactions = action.PostReactions;
+    reactionStack.Push(action.PostReactions);
     PerformSubscribers(action, postSubs);
-    yield return PerformReactions();
+    yield return PerformReactions(action.PostReactions);
+    reactionStack.Pop();
 
     OnFlowFinished?.Invoke();
     }
@@ -60,11 +79,11 @@ public class ActionSystem : Singleton<ActionSystem>
             }
         }
     }
-    private IEnumerator PerformReactions()
+    private IEnumerator PerformReactions(List<GameAction> phaseReactions)
     {
-       foreach (var reaction in reactions)
+       for (int i = 0; i < phaseReactions.Count; i++)
        {
-        yield return Flow(reaction);
+        yield return Flow(phaseReactions[i]);
        }
     }
     public static void AttachPerformer<T>(Func<T, IEnumerator> performer) where T : GameAction
@@ -84,24 +103,30 @@ public class ActionSystem : Singleton<ActionSystem>
     public static void SubscribeReaction<T>(Action<T> reaction, ReactionTiming timing) where T : GameAction
     {
         Dictionary<Type, List<Action<GameAction>>> subs = timing == ReactionTiming.PRE ? preSubs : postSubs;
-        void wrappedReaction(GameAction action) => reaction((T)action);
+        Action<GameAction> wrappedReaction = (action) => reaction((T)action);
+        wrappers[reaction] = wrappedReaction;
+        
         if (subs.ContainsKey(typeof(T)))
-            {
+        {
             subs[typeof(T)].Add(wrappedReaction);
-            }
+        }
         else
         {
             subs.Add(typeof(T), new());
             subs[typeof(T)].Add(wrappedReaction);
         }
     }
+
     public static void UnsubscribeReaction<T>(Action<T> reaction, ReactionTiming timing) where T : GameAction
     {
-    Dictionary<Type, List<Action<GameAction>>> subs = timing == ReactionTiming.PRE ? preSubs : postSubs;
-    if (subs.ContainsKey(typeof(T)))
+        Dictionary<Type, List<Action<GameAction>>> subs = timing == ReactionTiming.PRE ? preSubs : postSubs;
+        if (wrappers.TryGetValue(reaction, out Action<GameAction> wrappedReaction))
         {
-            void wrappedReaction(GameAction action) => reaction((T)action);
-            subs[typeof(T)].Remove(wrappedReaction);
+            if (subs.ContainsKey(typeof(T)))
+            {
+                subs[typeof(T)].Remove(wrappedReaction);
+            }
+            wrappers.Remove(reaction);
         }
     }
 }

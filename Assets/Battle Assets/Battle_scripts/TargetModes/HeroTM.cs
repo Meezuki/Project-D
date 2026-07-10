@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class HeroTM : TargetMode
 {
     public override List<CombatantView> GetTargets()

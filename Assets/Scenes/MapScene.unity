@@ -2139,7 +2139,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7d0603b94d509428de371124e21e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RunManager
-  CurrentDeck: []
+  CurrentDeck:
+  - {fileID: 11400000, guid: 30d06f25f093ed249800d0aade0f78a5, type: 2}
+  - {fileID: 11400000, guid: 439b23b5455d6784da8806e3f5256593, type: 2}
+  - {fileID: 11400000, guid: f301b94c433e8dc48881b9be6cdacfa3, type: 2}
+  - {fileID: 11400000, guid: d3c8d92734b2f7b488896dbe29e71256, type: 2}
+  - {fileID: 11400000, guid: 91e6016e00037bc488c116a789f16bc3, type: 2}
+  encounterPool: {fileID: 11400000, guid: bee37429be6019c49a915cfaf6486c7e, type: 2}
+  NextEncounterEnemies: []
 --- !u!1 &1393869616
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,24 @@ public class RunManager : PersistentSingleton<RunManager>
     // Deck yang akan dibawa pemain dan bisa bertambah/berkurang selama run
     public List<CardData> CurrentDeck = new();
 
+    [Header("Encounter Config")]
+    [SerializeField] private EncounterPoolSO encounterPool;
+    [HideInInspector] public List<EnemyData> NextEncounterEnemies = new();
+
+    public void PrepareEncounter(Map.NodeType nodeType)
+    {
+        NextEncounterEnemies.Clear();
+        if (encounterPool != null)
+        {
+            NextEncounterEnemies.AddRange(encounterPool.GetRandomEncounter(nodeType));
+            Debug.Log($"Prepared encounter with {NextEncounterEnemies.Count} enemies for {nodeType}");
+        }
+        else
+        {
+            Debug.LogWarning("RunManager: encounterPool is null! Cannot prepare encounter.");
+        }
+    }
+
     // Panggil ini saat pemain menekan "New Game" di Main Menu
     public void StartNewRun(HeroData startingHero)
     {
