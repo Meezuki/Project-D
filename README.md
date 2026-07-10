@@ -204,47 +204,12 @@ Stages are configured as overworld map structures via `MapConfig` assets.
 
 ---
 
-## Identified Bugs & Errors
+## Bugs & Errors
 
 These are major structural issues identified in the codebase that require resolution:
-
-1. **ActionSystem State Fragility (Shared Reactions Variable)**:
-   - **Problem**: In [ActionSystem.cs](file:///c:/Users/marco/Project-D/Assets/Battle%20Assets/Battle_scripts/General/ActionReaction/ActionSystem.cs), `reactions` is a single private class field: `private List<GameAction> reactions = null;`.
-   - **Implication**: When `Flow` runs recursively for nested reactions, it overwrites the shared `reactions` reference to the nested list (e.g., `R1.PreReactions`). Once the nested flow finishes and control returns, the outer iterator resumes but over the child's reaction list reference. If players or triggers queue multiple parallel reactions, they will be dropped, run on the wrong objects, or generate loop exceptions.
-   - **Fix**: Refactor `reactions` to be a local variable in the `Flow` coroutine, or pass it explicitly down to helper functions.
-
-2. **Burn Death Logic Bypass**:
+1. **Burn Death Logic Bypass**:
    - **Problem**: In [BurnSystem.cs](file:///c:/Users/marco/Project-D/Assets/Battle%20Assets/Battle_scripts/Systems/BurnSystem.cs), applying damage is performed via `target.Damage(applyBurnGA.BurnDamage)` directly on the `CombatantView`.
    - **Implication**: It bypasses the standard `DealDamageGA` game action queue. The system's death detection (checking if health <= 0 and triggering `KillEnemyGA`) is written only inside [DamageSystem.cs](file:///c:/Users/marco/Project-D/Assets/Battle%20Assets/Battle_scripts/Systems/DamageSystem.cs)'s performer. Since Burn damages directly, an enemy killed by Burn will drop to 0 HP but remain on the board, continue taking turns, and block victory.
    - **Fix**: Change `BurnSystem` to create and enqueue a `DealDamageGA` action instead of calling `target.Damage()` directly, or move death checking into the `CombatantView.Damage` method itself.
 
-3. **NullReferenceException on Card Discard**:
-   - **Problem**: In [CardSystem.cs](file:///c:/Users/marco/Project-D/Assets/Battle%20Assets/Battle_scripts/Systems/CardSystem.cs), `DiscardAllCardsPerformer` fetches the card view via `CardView cardView = handView.RemoveCard(card);` and calls `yield return DiscardCard(cardView)`.
-   - **Implication**: If `RemoveCard` cannot find a visual card representation (returns `null`), `DiscardCard(null)` runs and attempts `discardPile.Add(cardView.Card)`, crashing the action pipeline.
-   - **Fix**: Check `if (cardView != null)` before proceeding with `DiscardCard(cardView)`.
 
-4. **Enemy Slots Overflow**:
-   - **Problem**: In [EnemyBoardView.cs](file:///c:/Users/marco/Project-D/Assets/Battle%20Assets/Battle_scripts/Views/EnemyBoardView.cs), spawning enemies uses `Transform slot = slots[EnemyViews.Count];`.
-   - **Implication**: If you attempt to spawn more enemies than the size of the hardcoded `slots` list (for instance, 4 slimes when only 3 slots exist), the game throws an `IndexOutOfRangeException` and stops setting up the encounter.
-   - **Fix**: Add a check to prevent overflow or dynamically instantiate spawn slots.
-
-5. **Missing Game Over Implementation**:
-   - **Problem**: Inside [DamageSystem.cs](file:///c:/Users/marco/Project-D/Assets/Battle%20Assets/Battle_scripts/Systems/DamageSystem.cs)'s `DealDamagePerformer`, when the hero's health drops to 0 or below, it only hits a comment: `// Do some game over logic here / open game over screen`.
-   - **Implication**: There is no actual code to trigger the game-over screen or handle the defeat state. The game is left running.
-   - **Fix**: Reference the `BattleManager` to call its `GameOver()` method when the hero dies.
-
----
-
-## Future Implementation & Roadmap
-
-To turn these prototypes into a fully functional product, prioritize the following tasks:
-
-1. **Bridge Map Transitions and Combat**:
-   - Current state: Clicking any node loads `BattleTestScene`, which defaults to inspector-assigned slimes.
-   - Action item: Define an encounter scriptable object system (e.g. `EncounterData`) that is stored in the `MapNode`. Pass the encounter details to `RunManager` or `PlayerPrefs` before loading the scene, and have `MatchSetupSystem` read it to generate the specific enemies.
-2. **Implement Game Over State**:
-   - Add a defeat overlay canvas and call `BattleManager.Instance.GameOver()` to clean up map save data and return to the main menu.
-3. **Refactor ActionSystem**:
-   - Ensure the command execution pipeline is thread-safe and state-safe by removing class-level variables for lists being iterated in coroutines.
-4. **Rest Site & Shop Interfaces**:
-   - Create scenes/UIs for `RestSite` (restoring HP) and `Store` (buying cards/perks with the gold won in battle).
