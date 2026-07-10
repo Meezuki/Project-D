@@ -7,12 +7,22 @@ public class MatchManagerSystem : MonoBehaviour
 {
     [SerializeField] private BattleManager battleManager;
     [SerializeField] private GameObject victoryPanel;
+    [SerializeField] private GameObject defeatPanel;
     [SerializeField] private TMP_Text goldRewardText; // Tarik objek teks Gold ke sini
 
     private int temporaryGoldWon; // Untuk menyimpan angka sementara
 
-    private void OnEnable() => ActionSystem.AttachPerformer<WinMatchGA>(WinMatchPerformer);
-    private void OnDisable() => ActionSystem.DetachPerformer<WinMatchGA>();
+    private void OnEnable()
+    {
+        ActionSystem.AttachPerformer<WinMatchGA>(WinMatchPerformer);
+        ActionSystem.AttachPerformer<DefeatGA>(DefeatPerformer);
+    }
+
+    private void OnDisable()
+    {
+        ActionSystem.DetachPerformer<WinMatchGA>();
+        ActionSystem.DetachPerformer<DefeatGA>();
+    }
 
     private IEnumerator WinMatchPerformer(WinMatchGA winMatchGA)
     {
@@ -35,9 +45,28 @@ public class MatchManagerSystem : MonoBehaviour
         yield return null;
     }
 
+    private IEnumerator DefeatPerformer(DefeatGA defeatGA)
+    {
+        yield return new WaitForSeconds(1.5f);
+        if (defeatPanel != null)
+        {
+            defeatPanel.SetActive(true);
+        }
+        else
+        {
+            battleManager.GameOver();
+        }
+        yield return null;
+    }
+
     public void ContinueFromVictory()
     {
         // Kirim angka gold yang tadi ditampilkan di UI untuk disimpan
         battleManager.WinBattle(temporaryGoldWon);
+    }
+
+    public void ContinueFromDefeat()
+    {
+        battleManager.GameOver();
     }
 }

@@ -11,9 +11,23 @@ public class CombatantView : MonoBehaviour
     [SerializeField] private StatusEffectsUI statusEffectsUI;
 
     private Dictionary<StatusEffectType, int> statusEffects = new();
+    private Animator animator;
 
     public int MaxHealth { get; private set; }
     public int CurrentHealth {  get; private set; }
+
+    protected virtual void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    public void PlayAttackAnimation()
+    {
+        if (animator != null)
+        {
+            animator.Play("PlayerAttack", -1, 0f);
+        }
+    }
 
     protected void SetupBase(int health, Sprite image)
     {

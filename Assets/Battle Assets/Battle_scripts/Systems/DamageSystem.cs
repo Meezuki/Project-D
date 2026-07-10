@@ -17,11 +17,22 @@ public class DamageSystem : MonoBehaviour
     }
     private IEnumerator DealDamagePerformer(DealDamageGA dealDamageGA)
     {
+        if (dealDamageGA.Caster != null)
+        {
+            dealDamageGA.Caster.PlayAttackAnimation();
+        }
+
+        int strengthBonus = 0;
+        if (dealDamageGA.IsCardAction && dealDamageGA.Caster != null)
+        {
+            strengthBonus = dealDamageGA.Caster.GetStatusEffectStacks(StatusEffectType.STRENGTH);
+        }
+
         foreach (var target in dealDamageGA.Targets)
         {
 
             if (target == null) continue;
-            target.Damage(dealDamageGA.Amount);
+            target.Damage(dealDamageGA.Amount + strengthBonus);
             Instantiate(damageVFX, target.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(0.15f);
 
@@ -34,8 +45,8 @@ public class DamageSystem : MonoBehaviour
                 }
                 else
                 {
-                    // Do some game over logic here
-                    // open game over screen
+                    DefeatGA defeatGA = new();
+                    ActionSystem.Instance.AddReaction(defeatGA);
                 }
             }
         }

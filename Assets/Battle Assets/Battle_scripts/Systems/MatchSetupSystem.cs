@@ -26,7 +26,18 @@ public class MatchSetupSystem : MonoBehaviour
         // --------------------NEW---------------
         // sekarang ambil deck dari herodata bukan secara manual dari deckData
             HeroSystem.Instance.Setup(heroData);
-            EnemySystem.Instance.Setup(enemyDatas);
+
+            if (RunManager.Instance != null && RunManager.Instance.NextEncounterEnemies.Count > 0)
+            {
+                Debug.Log("Menggunakan Enemies dari RunManager!");
+                EnemySystem.Instance.Setup(RunManager.Instance.NextEncounterEnemies);
+            }
+            else
+            {
+                Debug.LogWarning("RunManager tidak ditemukan atau NextEncounterEnemies kosong! Menggunakan default enemies.");
+                EnemySystem.Instance.Setup(enemyDatas);
+            }
+
             PerkSystem.Instance.AddPerk(new Perk(perkData));
 
 

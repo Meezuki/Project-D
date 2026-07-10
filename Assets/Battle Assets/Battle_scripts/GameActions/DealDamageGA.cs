@@ -6,6 +6,7 @@ public class DealDamageGA : GameAction, IHaveCaster
     public List<CombatantView> Targets { get; set; }
 
     public CombatantView Caster { get; private set;}
+    public bool IsCardAction { get; set; } = false;
 
     public DealDamageGA(int amount, List<CombatantView> targets, CombatantView caster)
     {
