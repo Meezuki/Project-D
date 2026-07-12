@@ -18,6 +18,12 @@ public class InGameMenu : MonoBehaviour
         // Saat MapScene terbuka, MapManager di sana akan mendeteksi
         // tidak ada save data, lalu otomatis memanggil GenerateNewMap()
         CurrencyManager.Instance.ResetGold();
+
+        if (RunManager.Instance != null)
+        {
+            RunManager.Instance.ResetToDefault();
+        }
+
         SceneManager.LoadScene("MainMenu");
     }
 }

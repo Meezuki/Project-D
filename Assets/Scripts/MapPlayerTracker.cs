@@ -96,7 +96,7 @@ namespace Map
                 case NodeType.RestSite:
 
 
-                    SceneManager.LoadScene("BattleTestScene");
+                    SceneManager.LoadScene("RestDomain");
 
                     break;
                 case NodeType.Treasure:

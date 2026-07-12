@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Blessed
   m_EditorClassIdentifier: Assembly-CSharp::PerkData
   <Image>k__BackingField: {fileID: 21300000, guid: 9e7bd4c2773a7cb47ac0b890058ad09f, type: 3}
+  <Description>k__BackingField: +1 Max Mana per turn
   <PerkCondition>k__BackingField:
     rid: -2
   <AutoTargetEffect>k__BackingField:

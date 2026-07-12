@@ -39,6 +39,7 @@ public class CombatantView : MonoBehaviour
 
     public void Damage(int damageAmount)
     {
+        int previousHealth = CurrentHealth;
         int remainingDamage = damageAmount;
         int currentArmor = GetStatusEffectStacks(StatusEffectType.ARMOR);
         if (currentArmor > 0)
@@ -67,6 +68,20 @@ public class CombatantView : MonoBehaviour
         transform.DOShakePosition(0.2f, 0.5f);
         UpdateHealthText();
         SaveHPIfHero();
+
+        if (previousHealth > 0 && CurrentHealth <= 0)
+        {
+            if (this is EnemyView enemyView)
+            {
+                KillEnemyGA killEnemyGA = new(enemyView);
+                ActionSystem.Instance.AddReaction(killEnemyGA);
+            }
+            else
+            {
+                DefeatGA defeatGA = new();
+                ActionSystem.Instance.AddReaction(defeatGA);
+            }
+        }
     }
 
     public void Heal(int amount)

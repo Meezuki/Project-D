@@ -32,6 +32,12 @@ namespace Map
             {
                 CurrencyManager.Instance.ResetGold();
             }
+
+            if (RunManager.Instance != null)
+            {
+                RunManager.Instance.ResetToDefault();
+            }
+
             SceneManager.LoadScene("MapScene");
         }
 

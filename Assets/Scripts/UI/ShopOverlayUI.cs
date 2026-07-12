@@ -157,6 +157,11 @@ public class ShopOverlayUI : MonoBehaviour
                 if (perkSlotTitles[i] != null) perkSlotTitles[i].text = selected.name;
                 if (perkSlotPrices[i] != null) perkSlotPrices[i].text = PERK_COST + " G";
                 
+                // Add hover triggers for tooltip
+                AddPerkHoverTrigger(perkSlotContainers[i], selected);
+                if (perkSlotImages[i] != null) AddPerkHoverTrigger(perkSlotImages[i].gameObject, selected);
+                if (perkSlotButtons[i] != null) AddPerkHoverTrigger(perkSlotButtons[i].gameObject, selected);
+
                 perkSlotButtons[i].onClick.RemoveAllListeners();
                 int slotIndex = i;
                 PerkData perkRef = selected;
@@ -264,5 +269,15 @@ public class ShopOverlayUI : MonoBehaviour
             var removalImg = cardRemovalContainer.GetComponentInChildren<Image>();
             if (removalImg != null) removalImg.color = Color.gray;
         }
+    }
+
+    private void AddPerkHoverTrigger(GameObject obj, PerkData perkData)
+    {
+        PerkHoverTrigger trigger = obj.GetComponent<PerkHoverTrigger>();
+        if (trigger == null)
+        {
+            trigger = obj.AddComponent<PerkHoverTrigger>();
+        }
+        trigger.SetPerk(perkData);
     }
 }
