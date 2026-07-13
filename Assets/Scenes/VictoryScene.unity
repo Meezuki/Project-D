@@ -1846,7 +1846,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Game Demo Complete
 
-    Updates Soon!'
+    Feel free to keep playing!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 37aa7895489c3a14f89e9bc0e0f86a66, type: 2}
   m_sharedMaterial: {fileID: -1437454729912462558, guid: 37aa7895489c3a14f89e9bc0e0f86a66, type: 2}

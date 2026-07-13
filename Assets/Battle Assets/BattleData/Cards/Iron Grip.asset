@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0219101dd71211547b3531d814f44f3a, type: 3}
-  m_Name: IronGrip
+  m_Name: Iron Grip
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   <Description>k__BackingField: Gives 2 strength
   <Mana>k__BackingField: 1

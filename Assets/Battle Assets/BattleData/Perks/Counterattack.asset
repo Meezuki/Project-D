@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Counterattack
   m_EditorClassIdentifier: Assembly-CSharp::PerkData
   <Image>k__BackingField: {fileID: 21300000, guid: aa4bbcc29e29b2a4a89e0e72cfa88515, type: 3}
+  <Description>k__BackingField: When attacked, attack back for 5 damage
   <PerkCondition>k__BackingField:
     rid: 82034745796984908
   <AutoTargetEffect>k__BackingField:

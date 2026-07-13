@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7e5a5878d2ea0cd4c894dfc9bad282bc
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 146225
+  packageName: Apartment Door
+  packageVersion: 1.2
+  assetPath: Assets/Apartment_Door/Prefabs/Key.prefab
+  uploadId: 622512

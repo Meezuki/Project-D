@@ -15,6 +15,32 @@ public class RunManager : PersistentSingleton<RunManager>
     [SerializeField] private EncounterPoolSO encounterPool;
     [HideInInspector] public List<EnemyData> NextEncounterEnemies = new();
 
+    private readonly List<CardData> defaultDeck = new();
+    private int defaultMaxHP;
+    private int defaultCurrentHP;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (Instance == this)
+        {
+            defaultDeck.AddRange(CurrentDeck);
+            defaultMaxHP = HeroMaxHP;
+            defaultCurrentHP = HeroCurrentHP;
+        }
+    }
+
+    public void ResetToDefault()
+    {
+        CurrentDeck.Clear();
+        CurrentDeck.AddRange(defaultDeck);
+        HeroMaxHP = defaultMaxHP;
+        HeroCurrentHP = defaultCurrentHP;
+        ActivePerks.Clear();
+        NextEncounterEnemies.Clear();
+        Debug.Log("RunManager: Reset to defaults.");
+    }
+
     public void PrepareEncounter(Map.NodeType nodeType)
     {
         NextEncounterEnemies.Clear();

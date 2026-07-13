@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0e4a863307f742341ad22834dbd928ea
+timeCreated: 1552980791
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 146225
+  packageName: Apartment Door
+  packageVersion: 1.2
+  assetPath: Assets/Apartment_Door/Materials/SimpleDoor_Mat.mat
+  uploadId: 622512

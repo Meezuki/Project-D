@@ -18,4 +18,4 @@ MonoBehaviour:
   eliteEnemyPool:
   - {fileID: 11400000, guid: fdcd22b1eb9ce684ea5a1ee94af1a1bf, type: 2}
   bossEnemyPool:
-  - {fileID: 11400000, guid: fdcd22b1eb9ce684ea5a1ee94af1a1bf, type: 2}
+  - {fileID: 11400000, guid: 73e5c8ca2b70f0f41b2ea5c5c1b57a02, type: 2}

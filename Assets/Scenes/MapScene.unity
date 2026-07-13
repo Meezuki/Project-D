@@ -921,6 +921,7 @@ RectTransform:
   - {fileID: 1393869617}
   - {fileID: 873780672}
   - {fileID: 758132639}
+  - {fileID: 2139208013}
   m_Father: {fileID: 1640331417}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1258,7 +1259,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 25a58f8af9cf2ed46a27c3796d233d47, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cadee84947c09394296660939e26750d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1447,8 +1448,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 21.757}
-  m_SizeDelta: {x: 0, y: -43.513}
+  m_AnchoredPosition: {x: -9.266174, y: 56.1601}
+  m_SizeDelta: {x: 138.1208, y: 25.2933}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &434051097
 MonoBehaviour:
@@ -1629,6 +1630,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1640331417}
     m_Modifications:
+    - target: {fileID: 2355881562034316252, guid: 4901c51d73f5e934cbaeadd6dd300494, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
     - target: {fileID: 4002485822253416565, guid: 4901c51d73f5e934cbaeadd6dd300494, type: 3}
       propertyPath: m_Name
       value: DeckOverlayUI
@@ -1636,6 +1641,10 @@ PrefabInstance:
     - target: {fileID: 4002485822253416565, guid: 4901c51d73f5e934cbaeadd6dd300494, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504711159066986434, guid: 4901c51d73f5e934cbaeadd6dd300494, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
       objectReference: {fileID: 0}
     - target: {fileID: 4782618439444154894, guid: 4901c51d73f5e934cbaeadd6dd300494, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2676,9 +2685,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f301b94c433e8dc48881b9be6cdacfa3, type: 2}
   - {fileID: 11400000, guid: d3c8d92734b2f7b488896dbe29e71256, type: 2}
   - {fileID: 11400000, guid: 91e6016e00037bc488c116a789f16bc3, type: 2}
+  - {fileID: 11400000, guid: 84643a26ad4186c40acd8e7da80dd330, type: 2}
+  - {fileID: 11400000, guid: e2548351debf4d543bb81ab1d6a5c207, type: 2}
   HeroCurrentHP: 44
   HeroMaxHP: 44
-  ActivePerks: []
+  ActivePerks:
+  - {fileID: 11400000, guid: e3a382eecf2f8c244b60a865de70e53a, type: 2}
   encounterPool: {fileID: 11400000, guid: bee37429be6019c49a915cfaf6486c7e, type: 2}
   NextEncounterEnemies: []
 --- !u!1 &1393869616
@@ -3139,7 +3151,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 300497069}
-  - {fileID: 2139208013}
   - {fileID: 505948456}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3694,11 +3705,11 @@ RectTransform:
   m_Children:
   - {fileID: 351843624}
   - {fileID: 843586412}
-  m_Father: {fileID: 1640331417}
+  m_Father: {fileID: 300497069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 445.69165}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2145851072

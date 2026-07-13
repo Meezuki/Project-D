@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0219101dd71211547b3531d814f44f3a, type: 3}
   m_Name: Firestorm
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Description>k__BackingField: Add 3 burn to all enemies.
+  <Description>k__BackingField: Add 10 burn to all enemies.
   <Mana>k__BackingField: 2
   <Image>k__BackingField: {fileID: 21300000, guid: 6973b851105ce804c9b8d4394ead5891, type: 3}
   <ManualTargetEffect>k__BackingField:
@@ -34,4 +34,4 @@ MonoBehaviour:
       type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
       data:
         statusEffectType: 1
-        stackCount: 3
+        stackCount: 10
