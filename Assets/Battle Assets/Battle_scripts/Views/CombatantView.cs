@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class CombatantView : MonoBehaviour
